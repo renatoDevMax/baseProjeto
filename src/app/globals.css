@@ -1,26 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.sombreadoCard {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.fontMão {
+  font-family: "Tangerine", cursive;
+  font-weight: 700;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.gradienteLogo {
+  background: linear-gradient(to right, #ffffff 90%, #ff000000 95%);
+}
+
+/* SVG path draw animation */
+@keyframes draw-stroke {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fill-in {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+.path-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  fill: #151515;
+  fill-opacity: 0;
+  animation: draw-stroke 2.2s ease forwards, fill-in 0.6s ease forwards;
+}
+
+/* Pause category SVG animations until visible */
+.svg-paused .path-draw {
+  animation: none !important;
+}
+
+/* Per-path color helpers to override base color while preserving animation */
+.path-green {
+  stroke: #45b664;
+  fill: #45b664;
+}
+.path-blue {
+  stroke: #1698d4;
+  fill: #1698d4;
+}
+
+.shadow-pulse {
+  opacity: 0.35;
+  animation: shadow-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes shadow-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.delay-0 {
+  animation-delay: 0s, 2.2s;
+}
+.delay-1 {
+  animation-delay: 0.2s, 2.4s;
+}
+.delay-2 {
+  animation-delay: 0.4s, 2.6s;
+}
+.delay-3 {
+  animation-delay: 0.6s, 2.8s;
+}
+.delay-4 {
+  animation-delay: 0.8s, 3s;
+}
+.delay-5 {
+  animation-delay: 1s, 3.2s;
+}
+.delay-6 {
+  animation-delay: 1.2s, 3.4s;
+}
+.delay-7 {
+  animation-delay: 1.4s, 3.6s;
+}
+
+.gradienteBackground {
+  background: radial-gradient(circle, #ffffff 30%, #ffffff00 100%);
+}
+
+.vidroCategoria {
+  background: linear-gradient(45deg, #ffffff65 0%, #ffffffc2 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  transition: 0.1s linear;
+  overflow: hidden;
+}
+
+.vidroCategoria:active {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5) inset,
+    3px 3px 20px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+}
+
+.vidroCategoria h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.imgAnimacao {
+  background: url("/rotador2.png");
+  background-size: 80%, 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+/* Categoria overlay animation (quadrants slide out when fully visible) */
+.anima1,
+.anima2,
+.anima3,
+.anima4 {
+  transition: transform 0.3s ease;
+}
+
+/* Start state: centered (no transform). When container gains .anim-start, apply transforms with staggered delays */
+.anim-start .anima1 {
+  transform: translateX(-160px);
+  transition-delay: 0s;
+}
+.anim-start .anima2 {
+  transform: translateY(-160px);
+  transition-delay: 0.1s;
+}
+.anim-start .anima3 {
+  transform: translateY(160px);
+  transition-delay: 0.2s;
+}
+.anim-start .anima4 {
+  transform: translateX(160px);
+  transition-delay: 0.3s;
+}
+
+.centroRotador {
+  background-color: white;
+  width: 400px;
+  height: 400px;
+  transform: rotate(25deg);
+  opacity: 0.3;
+}
+
+.centroReferencia {
+  width: 400px;
+  height: 400px;
+  transform: rotate(45deg);
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Catavento compose translate + dynamic rotate via CSS var */
+.catavento {
+  transform: translateX(400px) rotate(var(--catavento-rot, 0deg));
+  transform-origin: center center;
+  transition: transform 0.3s ease;
+}
+
+/* Primeira pá */
+.paRotador1 {
+  background-color: #1198d0;
+  height: 600px;
+  width: 200px;
+  position: absolute;
+  left: 55%;
+  bottom: 55%;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.internoPa1 {
+  background-color: #1198d0;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.interno2pa1 {
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 50%;
+}
+
+/* Segunda pá */
+.paRotador2 {
+  background-color: #4bb25f;
+  height: 200px;
+  width: 600px;
+  position: absolute;
+  right: 55%;
+  bottom: 55%;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.internoPa2 {
+  background-color: #4bb25f;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+}
+
+.interno2pa2 {
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+}
+
+/* Terceira pá */
+
+.paRotador3 {
+  background-color: #1198d0;
+  height: 600px;
+  width: 200px;
+  position: absolute;
+  right: 55%;
+  top: 55%;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-top-right-radius: 100px;
+}
+
+.internoPa3 {
+  background-color: #1198d0;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  right: 100%;
+  top: 0;
+}
+
+.interno2pa3 {
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+}
+
+/* Quarta pá */
+
+.paRotador4 {
+  background-color: #4bb25f;
+  height: 200px;
+  width: 600px;
+  position: absolute;
+  left: 55%;
+  top: 55%;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+}
+
+.internoPa4 {
+  background-color: #4bb25f;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.interno2pa4 {
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
 }
