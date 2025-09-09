@@ -1,14 +1,17 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-export default function Categoria3({
-  rotateDeg = 0,
-  blurPx = 0,
+type CategoriaData = {
+  nomeCategoria: string;
+  empresas: any[];
+};
+
+export default function Categorizando({
+  data,
   onOpen,
 }: {
-  rotateDeg?: number;
-  blurPx?: number;
-  onOpen?: () => void;
+  data: CategoriaData;
+  onOpen?: (categoria: CategoriaData) => void;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -19,11 +22,9 @@ export default function Categoria3({
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          // Fully visible
           if (entry.intersectionRatio === 1) {
             setIsVisible(true);
           }
-          // Fully out of view
           if (entry.intersectionRatio === 0) {
             setIsVisible(false);
           }
@@ -48,11 +49,11 @@ export default function Categoria3({
       ></div>
       {/* Circulo btn categoria */}
       <button
-        onClick={onOpen}
+        onClick={() => onOpen?.(data)}
         className="w-[200px] h-[200px] rounded-full flex justify-center items-center vidroCategoria"
         type="button"
       >
-        <h1>Produtos de Limpeza 3</h1>
+        <h1>{data.nomeCategoria}</h1>
       </button>
     </div>
   );

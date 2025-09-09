@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from "react";
 export default function Categoria4({
   rotateDeg = 0,
   blurPx = 0,
+  onOpen,
 }: {
   rotateDeg?: number;
   blurPx?: number;
+  onOpen?: () => void;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -45,9 +47,13 @@ export default function Categoria4({
         }`}
       ></div>
       {/* Circulo btn categoria */}
-      <div className="w-[200px] h-[200px] rounded-full flex justify-center items-center vidroCategoria">
+      <button
+        onClick={onOpen}
+        className="w-[200px] h-[200px] rounded-full flex justify-center items-center vidroCategoria"
+        type="button"
+      >
         <h1>Produtos de Limpeza 4</h1>
-      </div>
+      </button>
     </div>
   );
 }

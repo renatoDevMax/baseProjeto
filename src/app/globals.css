@@ -306,3 +306,241 @@
   top: 0;
   border-radius: 50%;
 }
+
+/* modal categoria */
+
+.fundoOverlay {
+  background: linear-gradient(45deg, #ffffff3b 0%, #ffffff77 100%);
+  backdrop-filter: blur(10px);
+  transform: translateX(-200vw);
+}
+
+.painelFundo {
+  background-color: white;
+  width: 340px;
+  max-height: 450px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  overflow: hidden;
+  position: absolute;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.barraInterna {
+  width: 550px;
+  height: 100px;
+  background-color: #1198d0;
+  position: absolute;
+  animation: animacaoPainelBarra 10s linear infinite;
+}
+
+.barrafundo {
+  width: 100vh;
+  height: 30px;
+  position: absolute;
+  animation: animacaoPainelBarra 10s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reflexo1 {
+  width: 50px;
+  height: 200px;
+  background-color: #1198d0;
+  filter: blur(50px);
+  position: absolute;
+  left: 0;
+  animation: refletindoLaterais 10s linear infinite;
+}
+
+.reflexo2 {
+  width: 50px;
+  height: 300px;
+  background-color: #1198d0;
+  filter: blur(50px);
+  position: absolute;
+  right: 0;
+  animation: refletindoLaterais2 10s linear infinite;
+}
+
+@keyframes refletindoLaterais {
+  0% {
+    left: 100px;
+  }
+  7.5% {
+    left: -50px;
+  }
+  32.5% {
+    left: -50px;
+  }
+  50% {
+    left: 100px;
+  }
+
+  57.5% {
+    left: -50px;
+  }
+
+  82.5% {
+    left: -50px;
+  }
+  100% {
+    left: 100px;
+  }
+}
+
+@keyframes refletindoLaterais2 {
+  0% {
+    right: 100px;
+  }
+  7.5% {
+    right: -50px;
+  }
+  32.5% {
+    right: -50px;
+  }
+  50% {
+    right: 100px;
+  }
+
+  57.5% {
+    right: -50px;
+  }
+
+  82.5% {
+    right: -50px;
+  }
+  100% {
+    right: 100px;
+  }
+}
+
+@keyframes animacaoPainelBarra {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+@keyframes animaGradiente {
+  0% {
+    background-image: linear-gradient(0deg, red 30%, #1198d0 50%, red 70%);
+  }
+  100% {
+    background-image: linear-gradient(360deg, red 30%, #1198d0 50%, red 70%);
+  }
+}
+
+.painelEmpresas {
+  opacity: 1;
+  width: 340px;
+  max-height: 440px;
+  border-radius: 10px;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.empresas {
+  width: 100%;
+  height: 200px;
+  flex: 0 0 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: 0.05s linear;
+  position: relative;
+}
+
+.empresas:active {
+  box-shadow: 0 0 30px 0 rgba(255, 255, 255, 0.699) inset;
+}
+
+.empresas h1 {
+  background-color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0px 20px;
+  border-top-left-radius: 30px;
+  color: gray;
+  box-shadow: -3px 3px 10px 0 rgba(0, 0, 0, 0.589);
+}
+
+.painelFundo2 {
+  background-color: rgb(255, 255, 255);
+  width: 340px;
+  height: 440px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  overflow: hidden;
+  position: absolute;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  transform: translateY(-200vw);
+  transition: transform 300ms ease-out;
+}
+
+.modalEmpresa {
+  background-color: white;
+  width: 330px;
+  height: 430px;
+  border-radius: 10px;
+  position: absolute;
+  overflow-x: hidden;
+}
+
+.logoEmpresaModal {
+  width: 200px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.589);
+}
+
+.modalEmpresa h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 5px 20px;
+  color: gray;
+  max-width: 200px;
+}
+
+.sombreamentoLinks {
+  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.589);
+}
+
+.fundoHeader {
+  background: linear-gradient(
+    to right,
+    #4bb25f 0%,
+    white 20%,
+    white 80%,
+    #4bb25f 100%
+  );
+}
+
+.barrafundoHeader {
+  width: 500px;
+  height: 50px;
+  position: absolute;
+  background: #4bb25f;
+}
