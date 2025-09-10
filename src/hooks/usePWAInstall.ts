@@ -17,14 +17,18 @@ export const usePWAInstall = () => {
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
+    console.log("usePWAInstall hook inicializado");
+
     const handleBeforeInstallPrompt = (e: Event) => {
+      console.log("beforeinstallprompt event disparado!");
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
       setIsInstallable(true);
-      // Não mostrar prompt automático - apenas armazenar para uso manual
+      console.log("deferredPrompt definido, isInstallable = true");
     };
 
     const handleAppInstalled = () => {
+      console.log("appinstalled event disparado!");
       setIsInstalled(true);
       setIsInstallable(false);
       setDeferredPrompt(null);
@@ -33,9 +37,14 @@ export const usePWAInstall = () => {
 
     // Verificar se já está instalado
     const checkIfInstalled = () => {
-      if (window.matchMedia("(display-mode: standalone)").matches) {
+      const isStandalone = window.matchMedia(
+        "(display-mode: standalone)",
+      ).matches;
+      console.log("Verificando se está instalado:", isStandalone);
+      if (isStandalone) {
         setIsInstalled(true);
         setIsInstallable(false);
+        console.log("App já está instalado");
       }
     };
 
@@ -53,16 +62,45 @@ export const usePWAInstall = () => {
   }, []);
 
   const installApp = async () => {
+    console.log("installApp chamado");
+    console.log("deferredPrompt:", deferredPrompt);
+    console.log("isInstallable:", isInstallable);
+    console.log("User Agent:", navigator.userAgent);
+
     if (!deferredPrompt) {
+      console.log("Sem deferredPrompt disponível");
+
       // Para iOS, mostrar instruções
       if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        console.log("Dispositivo iOS detectado");
         showIOSInstructions();
         return;
       }
+
+      // Para Android/Desktop, mostrar instruções alternativas
+      if (/Android/.test(navigator.userAgent)) {
+        alert(
+          "Para instalar o app no Android:\n\n" +
+            "1. Toque no menu do navegador (três pontos)\n" +
+            "2. Selecione 'Instalar app' ou 'Adicionar à tela inicial'\n" +
+            "3. Confirme a instalação\n\n" +
+            "Se não aparecer a opção, o app pode não ser elegível para instalação ainda.",
+        );
+        return;
+      }
+
+      // Para desktop
+      alert(
+        "Para instalar o app:\n\n" +
+          "1. Procure pelo ícone de instalação na barra de endereços\n" +
+          "2. Ou use o menu do navegador para 'Instalar app'\n\n" +
+          "Se não aparecer, o app pode não ser elegível para instalação ainda.",
+      );
       return;
     }
 
     try {
+      console.log("Chamando deferredPrompt.prompt()");
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
 

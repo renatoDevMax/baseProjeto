@@ -14,8 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Acima Matinhos",
-  description:
-    "Sistema de gestão de mesas, pedidos, cardápio e notificações para garçons",
+  description: "Sistema com as melhores empresas de Matinhos",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
