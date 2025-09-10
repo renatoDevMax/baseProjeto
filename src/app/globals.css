@@ -544,3 +544,20 @@
   position: absolute;
   background: #4bb25f;
 }
+
+.btnMenu {
+  transition: 0.3s;
+}
+
+.btnMenu:active {
+  transform: scale(0.9);
+}
+
+.nomeCategoriaBtn {
+  background-image: radial-gradient(circle, #ffffff 0%, #ffffff00 100%);
+}
+
+.borderRodape {
+  border-top-right-radius: 90px;
+  box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.589);
+}

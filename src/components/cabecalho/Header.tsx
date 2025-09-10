@@ -3,7 +3,11 @@ import { useEffect, useRef } from "react";
 import { categoriasEmpresas } from "@/components/categoriasEmpresas";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-export default function Header() {
+type HeaderProps = {
+  onMenuClick?: () => void;
+};
+
+export default function Header({ onMenuClick }: HeaderProps) {
   const scrollPointRef = useRef<HTMLDivElement | null>(null);
   const barBackgroundRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -119,7 +123,10 @@ export default function Header() {
           </div>
         </div>
 
-        <GiHamburgerMenu className="text-gray-800 text-4xl mx-4" />
+        <GiHamburgerMenu
+          className="text-gray-800 text-4xl mx-4 btnMenu"
+          onClick={onMenuClick}
+        />
       </div>
     </div>
   );

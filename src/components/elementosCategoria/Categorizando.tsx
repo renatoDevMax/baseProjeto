@@ -53,7 +53,7 @@ export default function Categorizando({
         className="w-[200px] h-[200px] rounded-full flex justify-center items-center vidroCategoria"
         type="button"
       >
-        <h1>{data.nomeCategoria}</h1>
+        <h1 className="nomeCategoriaBtn">{data.nomeCategoria}</h1>
       </button>
     </div>
   );

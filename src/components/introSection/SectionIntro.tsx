@@ -1,10 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function SectionIntro() {
   const [widthPx, setWidthPx] = useState(150);
   const [rotationDeg, setRotationDeg] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [titleVisible, setTitleVisible] = useState(false);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let ticking = false;
@@ -40,8 +42,55 @@ export default function SectionIntro() {
       window.removeEventListener("resize", update);
     };
   }, []);
+
+  // Wait for both SVG path animations to complete, then reveal title
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const targets = Array.from(root.querySelectorAll(".path-draw")) as
+      | SVGElement[]
+      | Element[];
+    if (targets.length === 0) {
+      // Fallback: if for some reason we don't find paths, reveal after a short delay
+      const t = window.setTimeout(() => setTitleVisible(true), 600);
+      return () => window.clearTimeout(t);
+    }
+    let remaining = targets.length;
+    let revealed = false;
+    const maybeReveal = () => {
+      if (!revealed && remaining <= 0) {
+        revealed = true;
+        setTitleVisible(true);
+      }
+    };
+    const handlers: Array<{ el: Element; fn: (e: Event) => void }> = [];
+    targets.forEach((el) => {
+      const onEnd = () => {
+        remaining -= 1;
+        maybeReveal();
+      };
+      el.addEventListener("animationend", onEnd as EventListener);
+      el.addEventListener("transitionend", onEnd as EventListener);
+      handlers.push({ el, fn: onEnd });
+    });
+    // Safety timeout in case some animations do not emit events
+    const safety = window.setTimeout(() => {
+      remaining = 0;
+      maybeReveal();
+    }, 4000);
+    return () => {
+      handlers.forEach(({ el, fn }) => {
+        el.removeEventListener("animationend", fn as EventListener);
+        el.removeEventListener("transitionend", fn as EventListener);
+      });
+      window.clearTimeout(safety);
+    };
+  }, []);
   return (
-    <div className="w-[100dvw] h-[100dvh] flex justify-center items-center relative">
+    <div
+      ref={rootRef}
+      className="w-[100dvw] h-[100dvh] flex justify-center items-center relative"
+    >
       <video
         src="/intro2.mp4"
         autoPlay
@@ -59,7 +108,7 @@ export default function SectionIntro() {
           }%, #ffffff00 ${100 + 70 * scrollProgress}%)`,
         }}
       >
-        <div className="relative w-[150px] h-[150px] flex justify-center items-center">
+        <div className="relative w-[120px] h-[120px] flex justify-center items-center">
           <div
             className="absolute left-[-25px] top-1/2 -translate-y-1/2 h-[150px] flex items-center gradienteLogo rounded-[75px]"
             style={{ width: widthPx }}
@@ -136,10 +185,10 @@ export default function SectionIntro() {
           </div>
         </div>
 
-        <div className="w-[250px] h-[150px] ">
+        <div className="w-[230px] h-[130px] ">
           <svg
-            width="250"
-            height="150"
+            width="230"
+            height="130"
             viewBox="0 0 405 96"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -189,6 +238,16 @@ export default function SectionIntro() {
           </svg>
         </div>
       </div>
+
+      <h1
+        className="text-md text-center text-gray-900 absolute transform translate-y-16"
+        style={{
+          opacity: titleVisible ? 1 : 0,
+          transition: "opacity 600ms ease",
+        }}
+      >
+        Tudo que precisa em um só lugar!
+      </h1>
     </div>
   );
 }
