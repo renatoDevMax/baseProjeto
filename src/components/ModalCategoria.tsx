@@ -47,7 +47,7 @@ export default function ModalCategoria({
           {empresas.map((emp, idx) => (
             <div
               key={idx}
-              className="empresas bg-white border-b-2 border-gray-300"
+              className="empresas bg-white border-b-[5px] border-white"
               style={{ backgroundImage: `url('${emp.imagemEmpresa}')` }}
               onClick={() => {
                 setEmpresaSelecionada(emp);
