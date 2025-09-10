@@ -4,6 +4,7 @@ import { FaCloudDownloadAlt } from "react-icons/fa";
 import { categoriasEmpresas } from "../categoriasEmpresas";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { useEffect } from "react";
+import { usePWAInstall } from "../../hooks/usePWAInstall";
 
 type SideBarProps = {
   isOpen: boolean;
@@ -11,6 +12,8 @@ type SideBarProps = {
 };
 
 export default function SideBar({ isOpen, onClose }: SideBarProps) {
+  const { installApp, isInstallable, isInstalled } = usePWAInstall();
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -63,9 +66,26 @@ export default function SideBar({ isOpen, onClose }: SideBarProps) {
           />
         </h1>
         <div>
-          <div className="flex items-center justify-around mx-5 border-b-1 border-gray-200 mt-5">
-            <h3 className="text-gray-500 text-xl">Download App</h3>
-            <FaCloudDownloadAlt className="text-gray-500 text-4xl" />
+          <div
+            className="flex items-center justify-around mx-5 border-b-1 border-gray-200 mt-5 cursor-pointer hover:bg-gray-100 transition-colors p-2 rounded-lg"
+            onClick={installApp}
+          >
+            <h3 className="text-gray-500 text-xl">
+              {isInstalled
+                ? "App Instalado"
+                : isInstallable
+                ? "Instalar App"
+                : "Download App"}
+            </h3>
+            <FaCloudDownloadAlt
+              className={`text-4xl transition-colors ${
+                isInstalled
+                  ? "text-green-500"
+                  : isInstallable
+                  ? "text-blue-500"
+                  : "text-gray-500"
+              }`}
+            />
           </div>
           <h3 className="text-gray-500 text-xl mx-5 mt-5 mb-2">Categorias:</h3>
           <ul>
