@@ -35,6 +35,16 @@ self.addEventListener("activate", (event) => {
 
 // Interceptar requisições
 self.addEventListener("fetch", (event) => {
+  // Ignorar requisições de extensões e outros esquemas
+  if (
+    event.request.url.startsWith("chrome-extension://") ||
+    event.request.url.startsWith("moz-extension://") ||
+    event.request.url.startsWith("safari-extension://") ||
+    event.request.url.startsWith("ms-browser-extension://")
+  ) {
+    return;
+  }
+
   event.respondWith(
     caches
       .match(event.request)
