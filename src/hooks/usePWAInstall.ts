@@ -21,6 +21,7 @@ export const usePWAInstall = () => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
       setIsInstallable(true);
+      // Não mostrar prompt automático - apenas armazenar para uso manual
     };
 
     const handleAppInstalled = () => {

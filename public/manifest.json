@@ -1,6 +1,6 @@
 {
-  "name": "Acima - Gestão de Mesas e Pedidos",
-  "short_name": "Acima",
+  "name": "Acima Matinhos",
+  "short_name": "Acima Matinhos",
   "description": "Sistema de gestão de mesas, pedidos, cardápio e notificações para garçons",
   "start_url": "/",
   "display": "standalone",

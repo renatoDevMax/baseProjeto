@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Acima - Gestão de Mesas e Pedidos",
+  title: "Acima Matinhos",
   description:
     "Sistema de gestão de mesas, pedidos, cardápio e notificações para garçons",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Acima",
+    title: "Acima Matinhos",
   },
   icons: {
     icon: [

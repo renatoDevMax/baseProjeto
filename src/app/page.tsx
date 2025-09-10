@@ -11,7 +11,6 @@ import Header from "@/components/cabecalho/Header";
 import SideBar from "@/components/sideBar/SideBar";
 import Rodape from "@/components/footer/Rodape";
 import LoadingScreen from "@/components/LoadingScreen";
-import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,7 +57,6 @@ export default function Home() {
       <Header onMenuClick={() => setIsSidebarOpen(true)} />
       <SideBar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <Rodape />
-      <PWAInstallPrompt />
     </div>
   );
 }
