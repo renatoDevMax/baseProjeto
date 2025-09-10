@@ -17,9 +17,6 @@ export const metadata: Metadata = {
   description:
     "Sistema de gestão de mesas, pedidos, cardápio e notificações para garçons",
   manifest: "/manifest.json",
-  themeColor: "#1a1a1a",
-  viewport:
-    "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -34,6 +31,14 @@ export const metadata: Metadata = {
       { url: "/icons/icon-152x152.png", sizes: "152x152", type: "image/png" },
     ],
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#1a1a1a",
 };
 
 export default function RootLayout({

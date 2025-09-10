@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
 
   // Otimizações para PWA
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Removido para evitar conflito com critters
   },
 
   // Configurações de build
