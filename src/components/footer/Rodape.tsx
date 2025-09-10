@@ -60,7 +60,7 @@ export default function Rodape() {
         transform: isVisible ? "translateY(0%)" : "translateY(100%)",
         opacity: isVisible ? 1 : 0,
         transition: "transform 400ms ease, opacity 400ms ease",
-        zIndex: 1000,
+        zIndex: 10,
       }}
     >
       <div className="w-[250px] h-[70px] flex justify-center items-center">

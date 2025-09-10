@@ -560,4 +560,5 @@
 .borderRodape {
   border-top-right-radius: 90px;
   box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.589);
+  z-index: 1;
 }

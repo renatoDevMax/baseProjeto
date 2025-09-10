@@ -77,35 +77,35 @@ export default function ModalEmpresa({
         </div>
         <h3 className="nomeDaEmpresa">{empresa?.nomeEmpresa ?? ""}</h3>
         <p
-          className="max-w-[200px] mx-5 enderecoEmpresa"
+          className="max-w-[200px] mx-5 enderecoEmpresa text-gray-600 text-md"
           style={{ display: empresa?.endereco ? undefined : "none" }}
         >
           {empresa?.endereco}
         </p>
 
         <p
-          className="max-w-[200px] mx-5 my-3 contato1"
+          className="max-w-[200px] mx-5 my-3 contato1 text-gray-600 text-md"
           style={{ display: empresa?.contato1 ? undefined : "none" }}
         >
           {empresa?.contato1}
         </p>
 
         <p
-          className="max-w-[200px] mx-5 my-3 contato2"
+          className="max-w-[200px] mx-5 my-3 contato2 text-gray-600 text-md"
           style={{ display: empresa?.contato2 ? undefined : "none" }}
         >
           {empresa?.contato2}
         </p>
 
         <p
-          className="max-w-[200px] mx-5 my-3 email"
+          className="max-w-[200px] mx-5 my-3 email text-gray-600 text-md"
           style={{ display: empresa?.email ? undefined : "none" }}
         >
           {empresa?.email}
         </p>
 
         <p
-          className="max-w-[200px] mx-5 my-3 site"
+          className="max-w-[200px] mx-5 my-3 site text-gray-600 text-md"
           style={{ display: empresa?.site ? undefined : "none" }}
         >
           {empresa?.site}
