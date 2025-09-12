@@ -21,7 +21,8 @@ export const usePWAInstall = () => {
 
     const handleBeforeInstallPrompt = (e: Event) => {
       console.log("beforeinstallprompt event disparado!");
-      e.preventDefault();
+      // NÃO interceptar o evento - deixar o navegador lidar com isso
+      // e.preventDefault(); // REMOVIDO
       setDeferredPrompt(e as BeforeInstallPromptEvent);
       setIsInstallable(true);
       console.log("deferredPrompt definido, isInstallable = true");

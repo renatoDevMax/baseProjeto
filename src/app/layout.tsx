@@ -59,6 +59,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {/* Service Worker DESABILITADO para evitar prompts de instalação */}
+        {/*
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -76,6 +78,7 @@ export default function RootLayout({
             `,
           }}
         />
+        */}
       </body>
     </html>
   );
