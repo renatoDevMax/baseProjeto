@@ -12,21 +12,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
   useEffect(() => {
     const imagesToPreload = [
-      "/logoGeralAcima.png",
-      "/intro2.mp4", // Video também precisa carregar
-      "/logos/logo2irmaos.jpg",
-      "/logos/logoArqmax.jpg",
-      "/logos/logoCafeMansa.jpg",
-      "/logos/logoCaiobaarquitetura.png",
-      "/logos/logoCeleiro.png",
-      "/logos/logoEcoclean.jpg",
-      "/logos/logoLimpamais.jpg",
-      "/logos/logoMichelArq.png",
-      "/logos/logoPersonalcross.jpg",
-      "/prodLimpeza/logoEcoclean.jpg",
-      "/prodLimpeza/logoLimpamais.jpg",
-      "/rotador.png",
-      "/rotador2.png",
+      "/intro2.mp4", // Video de fundo da intro
+      "/rotador.png", // Imagem de fundo das categorias
+      "/rotador2.png", // Imagem de fundo das categorias
     ];
 
     let loadedCount = 0;
@@ -37,7 +25,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       setProgress(newProgress);
 
       if (newProgress < 30) {
-        setLoadingText("Carregando recursos...");
+        setLoadingText("Carregando recursos essenciais...");
       } else if (newProgress < 70) {
         setLoadingText("Preparando interface...");
       } else if (newProgress < 100) {
@@ -89,13 +77,13 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         // Aguarda um pouco mais para garantir que tudo está pronto
         setTimeout(() => {
           onComplete();
-        }, 500);
+        }, 200);
       } catch (error) {
         console.warn("Erro no preload:", error);
         // Mesmo com erro, continua após um tempo
         setTimeout(() => {
           onComplete();
-        }, 1000);
+        }, 500);
       }
     };
 
