@@ -38,13 +38,13 @@ export default function Home() {
       <HorizontalParallax
         scrollPerItem={700}
         gap={0}
-        pinHeights={5}
+        pinHeights={7}
         className="categorias-section"
         overlayRender={(ratio, steps) => (
           <BaseFundo fixedOverlay rotationDeg={28 - ratio * 90 * steps} />
         )}
       >
-        {categoriasEmpresas.slice(0, 5).map((cat, idx) => (
+        {categoriasEmpresas.map((cat, idx) => (
           <Categorizando key={idx} data={cat} onOpen={openModal} />
         ))}
       </HorizontalParallax>
